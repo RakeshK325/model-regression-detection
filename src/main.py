@@ -1,31 +1,21 @@
 from config import load_prompt
-from classifier import classify_email
+from validator import load_golden_dataset
 
 
 def main():
-    # Load the prompt configuration
+    # Load prompt configuration
     prompt = load_prompt("../prompts/v1.yaml")
 
-    # Sample customer email
-    email = """
-    Hello,
+    # Load golden dataset
+    dataset = load_golden_dataset("../datasets/golden_dataset_v1.json")
 
-    I was charged twice for my premium subscription this month.
-    Can you please refund the duplicate payment?
-
-    Thanks,
-    John
-    """
-
-    # Classify the email
-    result = classify_email(email, prompt)
-
-    # Print the results
-    print("\n===== Classification Result =====")
+    print("========================================")
+    print("Model Regression Detection System")
+    print("========================================")
     print(f"Prompt Version : {prompt.version}")
-    print(f"Timestamp      : {prompt.timestamp}")
-    print(f"Category       : {result.category}")
-    print(f"Summary        : {result.summary}")
+    print(f"Dataset Size   : {len(dataset)} test cases")
+    print("System Status  : Ready")
+    print("========================================")
 
 
 if __name__ == "__main__":

@@ -1,0 +1,102 @@
+[
+  {
+    "id": "TC001",
+    "input": "Hello, I noticed that my credit card was charged twice for my monthly subscription. Could you please refund the duplicate payment?",
+    "expected_output": {
+      "category": "billing",
+      "summary": "Customer reports a duplicate subscription charge and requests a refund."
+    },
+    "expected_difficulty": "easy",
+    "notes": "Duplicate payment issue."
+  },
+  {
+    "id": "TC002",
+    "input": "I cancelled my subscription last week, but I was still billed today. Please look into this.",
+    "expected_output": {
+      "category": "billing",
+      "summary": "Customer was charged after cancelling the subscription."
+    },
+    "expected_difficulty": "easy",
+    "notes": "Billing after cancellation."
+  },
+  {
+    "id": "TC003",
+    "input": "Can you send me a copy of my latest invoice? I need it for reimbursement.",
+    "expected_output": {
+      "category": "billing",
+      "summary": "Customer requests a copy of the latest invoice."
+    },
+    "expected_difficulty": "easy",
+    "notes": "Invoice request."
+  },
+  {
+    "id": "TC004",
+    "input": "The application keeps crashing every time I try to upload a file. I have already restarted my computer.",
+    "expected_output": {
+      "category": "technical",
+      "summary": "Customer reports the application crashes during file uploads."
+    },
+    "expected_difficulty": "easy",
+    "notes": "Application crash."
+  },
+  {
+    "id": "TC005",
+    "input": "I cannot log in because the website keeps showing a server error after entering my password.",
+    "expected_output": {
+      "category": "technical",
+      "summary": "Customer encounters a server error while logging in."
+    },
+    "expected_difficulty": "easy",
+    "notes": "Login server error."
+  },
+  {
+    "id": "TC006",
+    "input": "The mobile app freezes whenever I try to open the dashboard.",
+    "expected_output": {
+      "category": "technical",
+      "summary": "Customer reports the mobile app freezes on the dashboard."
+    },
+    "expected_difficulty": "easy",
+    "notes": "Mobile app freeze."
+  },
+  {
+    "id": "TC007",
+    "input": "I forgot my password and I'm unable to access my account. Please help me reset it.",
+    "expected_output": {
+      "category": "account",
+      "summary": "Customer requests assistance resetting a forgotten password."
+    },
+    "expected_difficulty": "easy",
+    "notes": "Password reset."
+  },
+  {
+    "id": "TC008",
+    "input": "I'd like to change the email address associated with my account.",
+    "expected_output": {
+      "category": "account",
+      "summary": "Customer wants to update the account email address."
+    },
+    "expected_difficulty": "easy",
+    "notes": "Email update."
+  },
+  {
+    "id": "TC009",
+    "input": "I'm interested in learning more about your premium plan. Could you explain the available features?",
+    "expected_output": {
+      "category": "general",
+      "summary": "Customer requests information about the premium plan."
+    },
+    "expected_difficulty": "easy",
+    "notes": "General product inquiry."
+  },
+  {
+    "id": "TC010",
+    "input": "Thank you for the quick support yesterday. Everything is working perfectly now.",
+    "expected_output": {
+      "category": "general",
+      "summary": "Customer expresses appreciation for the support received."
+    },
+    "expected_difficulty": "easy",
+    "notes": "Thank-you message."
+  }
+]
