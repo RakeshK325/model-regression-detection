@@ -1,15 +1,23 @@
 from config import load_prompt
 from validator import load_golden_dataset
 from evaluator import evaluate
-from reporter import save_evaluation
+from reporter import (
+    save_evaluation,
+    print_evaluation,
+    print_summary,
+    print_regression_report,
+)
+from loader import load_evaluation
+from comparator import compare_runs
+from html_report import generate_html_report
 
 
 def main():
 
-    # Load prompt configuration
+    # Load configuration
     prompt = load_prompt("../prompts/v1.yaml")
 
-    # Load golden dataset
+    # Load dataset
     dataset = load_golden_dataset(
         "../datasets/golden_dataset_v1.json"
     )
@@ -20,59 +28,38 @@ def main():
         dataset
     )
 
-    # Save evaluation results
+    # Save evaluation
     report_path = save_evaluation(
-    evaluation,
-    "../results"
-)
-
-    print("\n========================================")
-    print("MODEL REGRESSION DETECTION SYSTEM")
-    print("========================================")
-
-    print(f"Prompt Version : {evaluation.prompt_version}")
-    print(f"Total Cases    : {evaluation.total_cases}")
-
-    print("\nEvaluation Results")
-    print("----------------------------------------")
-
-    for result in evaluation.results:
-
-        print(f"\nTest Case : {result.test_case_id}")
-
-        print(f"Expected Category : {result.expected_category}")
-        print(f"Predicted Category: {result.predicted_category}")
-        print(f"Correct           : {result.is_correct}")
-
-        print("\nExpected Summary :")
-        print(result.expected_summary)
-
-        print("\nPredicted Summary :")
-        print(result.predicted_summary)
-
-        print("----------------------------------------")
-
-    # Calculate category accuracy
-    correct_predictions = sum(
-        result.is_correct
-        for result in evaluation.results
+        evaluation,
+        "../results"
     )
 
-    accuracy = (
-        correct_predictions
-        / evaluation.total_cases
-    ) * 100
+    # Load reports
+    baseline = load_evaluation("../results/baseline.json")
+    latest = load_evaluation("../results/latest.json")
 
-    print("\n========================================")
-    print("Evaluation Summary")
-    print("========================================")
-    print(f"Correct Predictions   : {correct_predictions}")
-    print(f"Incorrect Predictions : {evaluation.total_cases - correct_predictions}")
-    print(f"Category Accuracy     : {accuracy:.2f}%")
-    print("========================================")
+    # Compare
+    comparison = compare_runs(
+        baseline,
+        latest
+    )
+
+    # Console output
+    print_evaluation(evaluation)
+
+    print_summary(evaluation)
 
     print("\nEvaluation report saved successfully!")
     print(f"Location: {report_path}")
+
+    print_regression_report(comparison)
+    generate_html_report(
+    evaluation,
+    "../results/report.html"
+    )
+
+    print("\nHTML report generated successfully!")
+    print("Location: ../results/report.html")
 
 
 if __name__ == "__main__":

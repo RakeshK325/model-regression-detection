@@ -1,0 +1,86 @@
+{
+    "prompt_version": "1.0",
+    "total_cases": 10,
+    "results": [
+        {
+            "test_case_id": "TC001",
+            "expected_category": "billing",
+            "predicted_category": "billing",
+            "expected_summary": "Customer reports a duplicate subscription charge and requests a refund.",
+            "predicted_summary": "Customer reports being charged twice.",
+            "is_correct": true
+        },
+        {
+            "test_case_id": "TC002",
+            "expected_category": "billing",
+            "predicted_category": "billing",
+            "expected_summary": "Customer was charged after cancelling the subscription.",
+            "predicted_summary": "Customer disputes incorrect billing after cancellation",
+            "is_correct": true
+        },
+        {
+            "test_case_id": "TC003",
+            "expected_category": "billing",
+            "predicted_category": "account",
+            "expected_summary": "Customer requests a copy of the latest invoice.",
+            "predicted_summary": "Customer requests a copy of their latest invoice.",
+            "is_correct": false
+        },
+        {
+            "test_case_id": "TC004",
+            "expected_category": "technical",
+            "predicted_category": "technical",
+            "expected_summary": "Customer reports the application crashes during file uploads.",
+            "predicted_summary": "User reports application crashes while uploading files.",
+            "is_correct": true
+        },
+        {
+            "test_case_id": "TC005",
+            "expected_category": "technical",
+            "predicted_category": "technical",
+            "expected_summary": "Customer encounters a server error while logging in.",
+            "predicted_summary": "Customer is unable to access account due to server error.",
+            "is_correct": true
+        },
+        {
+            "test_case_id": "TC006",
+            "expected_category": "technical",
+            "predicted_category": "technical",
+            "expected_summary": "Customer reports the mobile app freezes on the dashboard.",
+            "predicted_summary": "Mobile app crashes when opening dashboard",
+            "is_correct": true
+        },
+        {
+            "test_case_id": "TC007",
+            "expected_category": "account",
+            "predicted_category": "account",
+            "expected_summary": "Customer requests assistance resetting a forgotten password.",
+            "predicted_summary": "Customer requests password reset",
+            "is_correct": true
+        },
+        {
+            "test_case_id": "TC008",
+            "expected_category": "account",
+            "predicted_category": "account",
+            "expected_summary": "Customer wants to update the account email address.",
+            "predicted_summary": "Requesting to update email address",
+            "is_correct": true
+        },
+        {
+            "test_case_id": "TC009",
+            "expected_category": "general",
+            "predicted_category": "account",
+            "expected_summary": "Customer requests information about the premium plan.",
+            "predicted_summary": "Customer inquiries about premium plan details",
+            "is_correct": false
+        },
+        {
+            "test_case_id": "TC010",
+            "expected_category": "general",
+            "predicted_category": "general",
+            "expected_summary": "Customer expresses appreciation for the support received.",
+            "predicted_summary": "Customer expresses gratitude and satisfaction with recent issue resolution.",
+            "is_correct": true
+        }
+    ]
+}

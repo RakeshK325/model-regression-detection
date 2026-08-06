@@ -39,3 +39,15 @@ class EvaluationRun(BaseModel):
     total_cases: int
     results: list[EvaluationResult]
 
+class RegressionCase(BaseModel):
+    test_case_id: str
+    previous_correct: bool
+    current_correct: bool
+    status: str
+
+
+class RegressionReport(BaseModel):
+    total_cases: int
+    regressions: list[RegressionCase]
+    improvements: list[RegressionCase]    
+
