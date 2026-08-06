@@ -25,7 +25,17 @@ class GoldenTestCase(BaseModel):
 
 class EvaluationResult(BaseModel):
     test_case_id: str
+
     expected_category: str
     predicted_category: str
+
     expected_summary: str
     predicted_summary: str
+
+    is_correct: bool
+    
+class EvaluationRun(BaseModel):
+    prompt_version: str
+    total_cases: int
+    results: list[EvaluationResult]
+
