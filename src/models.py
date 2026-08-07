@@ -51,3 +51,16 @@ class RegressionReport(BaseModel):
     regressions: list[RegressionCase]
     improvements: list[RegressionCase]    
 
+class Metrics(BaseModel):
+    accuracy: float
+
+    correct_predictions: int
+    incorrect_predictions: int
+
+    precision: float
+    recall: float
+    f1_score: float
+
+    confusion_matrix: dict[str, dict[str, int]]
+
+    category_metrics: dict[str, dict[str, float]]

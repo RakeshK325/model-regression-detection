@@ -88,32 +88,64 @@ def print_evaluation(evaluation):
 
         print("----------------------------------------")
 
-def print_summary(evaluation):
 
-    correct_predictions = sum(
-        result.is_correct
-        for result in evaluation.results
-    )
-
-    accuracy = (
-        correct_predictions
-        /
-        evaluation.total_cases
-    ) * 100
+def print_summary(metrics):
 
     print("\n========================================")
     print("Evaluation Summary")
     print("========================================")
 
-    print(f"Correct Predictions   : {correct_predictions}")
-    print(
-        f"Incorrect Predictions : "
-        f"{evaluation.total_cases - correct_predictions}"
-    )
-    print(f"Category Accuracy     : {accuracy:.2f}%")
+    print(f"Correct Predictions   : {metrics.correct_predictions}")
+    print(f"Incorrect Predictions : {metrics.incorrect_predictions}")
+    print(f"Accuracy              : {metrics.accuracy:.2f}%")
+    print(f"Precision             : {metrics.precision:.2f}%")
+    print(f"Recall                : {metrics.recall:.2f}%")
+    print(f"F1 Score              : {metrics.f1_score:.2f}%")
 
     print("========================================")
 
+
+def print_confusion_matrix(metrics):
+
+    print("\n========================================")
+    print("Confusion Matrix")
+    print("========================================")
+
+    for actual, predictions in metrics.confusion_matrix.items():
+
+        print(f"\nActual Category : {actual}")
+
+        for predicted, count in predictions.items():
+
+            print(
+                f"  Predicted as {predicted:<12} : {count}"
+            )
+
+def print_category_metrics(metrics):
+
+    print("\n========================================")
+    print("Category Metrics")
+    print("========================================")
+
+    for category, values in metrics.category_metrics.items():
+
+        print(f"\nCategory : {category}")
+
+        print(
+            f"Precision : "
+            f"{values['precision']:.2f}%"
+        )
+
+        print(
+            f"Recall    : "
+            f"{values['recall']:.2f}%"
+        )
+
+        print(
+            f"F1 Score  : "
+            f"{values['f1']:.2f}%"
+        )
+        
 def print_regression_report(comparison):
 
     print("\n========================================")
@@ -148,4 +180,4 @@ def print_regression_report(comparison):
             print(f"Previous  : {case.previous_correct}")
             print(f"Current   : {case.current_correct}")
             print(f"Status    : {case.status}")
-            print()            
+            print()

@@ -1,10 +1,13 @@
 from config import load_prompt
 from validator import load_golden_dataset
 from evaluator import evaluate
+from metrics import calculate_metrics
 from reporter import (
     save_evaluation,
     print_evaluation,
     print_summary,
+    print_confusion_matrix,
+    print_category_metrics,
     print_regression_report,
 )
 from loader import load_evaluation
@@ -14,7 +17,7 @@ from html_report import generate_html_report
 
 def main():
 
-    # Load configuration
+    # Load prompt
     prompt = load_prompt("../prompts/v1.yaml")
 
     # Load dataset
@@ -22,10 +25,15 @@ def main():
         "../datasets/golden_dataset_v1.json"
     )
 
-    # Run evaluation
+    # Evaluate
     evaluation = evaluate(
         prompt,
         dataset
+    )
+
+    # Calculate metrics
+    metrics = calculate_metrics(
+        evaluation
     )
 
     # Save evaluation
@@ -34,32 +42,43 @@ def main():
         "../results"
     )
 
-    # Load reports
-    baseline = load_evaluation("../results/baseline.json")
-    latest = load_evaluation("../results/latest.json")
+    # Generate HTML report
+    generate_html_report(
+        evaluation,
+        "../results/report.html"
+    )
 
-    # Compare
+    # Load reports
+    baseline = load_evaluation(
+        "../results/baseline.json"
+    )
+
+    latest = load_evaluation(
+        "../results/latest.json"
+    )
+
+    # Compare runs
     comparison = compare_runs(
         baseline,
         latest
     )
 
-    # Console output
+    # Console Output
     print_evaluation(evaluation)
 
-    print_summary(evaluation)
+    print_summary(metrics)
+
+    print_confusion_matrix(metrics)
+    
+    print_category_metrics(metrics)
 
     print("\nEvaluation report saved successfully!")
     print(f"Location: {report_path}")
 
-    print_regression_report(comparison)
-    generate_html_report(
-    evaluation,
-    "../results/report.html"
-    )
-
     print("\nHTML report generated successfully!")
     print("Location: ../results/report.html")
+
+    print_regression_report(comparison)
 
 
 if __name__ == "__main__":
