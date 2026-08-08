@@ -1,6 +1,6 @@
 import json
 
-from llm import generate
+from llm_factory import generate
 from models import PromptConfig, ClassificationResult
 
 

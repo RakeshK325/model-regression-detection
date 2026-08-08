@@ -11,6 +11,7 @@ class ClassificationResult(BaseModel):
     category: str
     summary: str
 
+
 class ExpectedOutput(BaseModel):
     category: str
     summary: str
@@ -21,7 +22,8 @@ class GoldenTestCase(BaseModel):
     input: str
     expected_output: ExpectedOutput
     expected_difficulty: str
-    notes: str    
+    notes: str
+
 
 class EvaluationResult(BaseModel):
     test_case_id: str
@@ -33,11 +35,13 @@ class EvaluationResult(BaseModel):
     predicted_summary: str
 
     is_correct: bool
-    
+
+
 class EvaluationRun(BaseModel):
     prompt_version: str
     total_cases: int
     results: list[EvaluationResult]
+
 
 class RegressionCase(BaseModel):
     test_case_id: str
@@ -49,7 +53,8 @@ class RegressionCase(BaseModel):
 class RegressionReport(BaseModel):
     total_cases: int
     regressions: list[RegressionCase]
-    improvements: list[RegressionCase]    
+    improvements: list[RegressionCase]
+
 
 class Metrics(BaseModel):
     accuracy: float
